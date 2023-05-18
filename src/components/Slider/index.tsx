@@ -34,14 +34,16 @@ const Slider = () => {
   useEffect(() => {
     const difference = Math.ceil(swipeEnd - swipeStart);
     if (Math.abs(difference) > 20 && swipeStart !== 0 && swipeEnd !== 0) {
-      if (difference < 0) {
-        handleBackClick();
-      } else {
+      if (difference < 0 && progressValue < 100) {
         handleToClick();
+      } else if (difference > 0 && cardsCountDisplayed !== cardsOnPage) {
+        handleBackClick();
       }
+      setSwipeStart(0);
+      setSwipeEnd(0)
     }
 
-  }, [swipeStart, swipeEnd, cardsCountDisplayed]);
+  }, [swipeStart, swipeEnd, cardsCountDisplayed, cardsOnPage, progressValue]);
 
 
   useEffect(() => {
