@@ -1,0 +1,23 @@
+@import '../../assets/styles/variables.scss';
+@import '../../assets/styles/mixins.scss';
+
+.container {
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 1300px;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0 87px;
+  min-height: 100vh;
+}
+
+
+@media(min-width: 768px) {
+  .content {
+    padding: 120px 0 160px;
+  }
+}
+

@@ -1,0 +1,220 @@
+@import '../../assets/styles/variables.scss';
+
+$mobileCardGap: 10px;
+$mediumCardGap: 20px;
+$largeCardGap: 40px;
+
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: $slideWidth;
+}
+
+.content{
+  overflow: hidden;
+}
+
+.list {
+  display: flex;
+  gap: $mobileCardGap;
+  transition: transform 1s ease;
+  user-select: none;
+}
+
+.item {
+  width: $slideWidth;
+  flex-shrink: 0;
+  border: 1px solid $mainColorLight;
+  &[aria-selected] {
+    border-color: $mainColor;
+  }
+}
+
+.title {
+  padding-bottom: 20px;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 50px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  order: 2;
+  gap: 20px;
+  progress {
+    flex-grow: 2;
+  }
+}
+
+.progress {
+  height: 2px;
+  border-radius: 0;
+  &::-webkit-progress-bar {
+    background-color: $mainColorLight;
+  }
+  &::-webkit-progress-value {
+    background-color: $mainColor;
+    transition: width 1s ease;
+  }
+}
+
+.btn {
+  flex-shrink: 0;
+  width: 55px;
+  height: 55px;
+  outline: none;
+  border: 1px solid $mainColorLight;
+  background: transparent;
+  transition: background .3s ease;
+  cursor: pointer;
+  &:before {
+    position: absolute;
+    content: '';
+    top: 20px;
+    display: block;
+    width: 13px;
+    height: 13px;
+    border: solid $mainColor;
+    border-width: 0 1px 1px 0;
+  }
+  &_back {
+    &::before {
+      left: 25px;
+      transform: rotate(135deg);
+    }
+  }
+  &_to {
+    &::before {
+      right: 25px;
+      transform: rotate(-45deg);
+    }
+  }
+  &:disabled {
+    cursor: auto;
+    &::before {
+      opacity: .5;
+    }
+  }
+}
+
+.animatedBtn {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -40px 0 0 -40px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow: inset 0 0 0 35px rgba(151, 150, 150, 0.15);
+    display: none;
+    transition-property: transform, opacity;
+  }
+  &:enabled:active:after {
+    animation: animate-click 0.6s ease-out forwards;
+    display: block;
+  }
+}
+
+@keyframes animate-click {
+  0% {
+      opacity: 1;
+      transform: scale3d(0.4, 0.4, 1);
+  }
+
+  80% {
+      box-shadow: inset 0 0 0 2px rgba(0,0,0,0.1);
+      opacity: 0.1;
+  }
+
+  100% {
+      opacity: 0;
+      box-shadow: inset 0 0 0 2px rgba(0,0,0,0.1);
+      transform: scale3d(1.2, 1.2, 1);
+  }
+}
+
+@media (min-width: 580px) {
+  .wrap {
+    width: $slideWidth * 2 + $mediumCardGap;
+  }
+
+  .list {
+    gap: $mediumCardGap;
+  }
+}
+
+
+@media (min-width: 840px) {
+  .wrap {
+    width: $slideWidth * 3 + $mediumCardGap * 2;
+    gap: $largeCardGap;
+  }
+
+  .title {
+    padding-bottom: 0;
+    font-size: 50px;
+    line-height: 60px;
+  }
+
+  .btn {
+    width: 60px;
+    height: 60px;
+    &:enabled:hover {
+      background: $mainColorLight;
+    }
+    &:before {
+      width: 15px;
+      height: 15px;
+      top: 22px;
+    }
+    &_back {
+      &::before {
+        left: 26px;
+      }
+    }
+    &_to {
+      &::before {
+        right: 26px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .wrap {
+    display: grid;
+    grid-template-columns: repeat(4, $slideWidth);
+    grid-template-rows: 60px auto;
+    width: $slideWidth * 4 + $largeCardGap * 3;
+  }
+
+  .title {
+    grid-column: span 2;
+  }
+
+  .content {
+    grid-column: span 4;
+  }
+
+  .list {
+    gap: $largeCardGap;
+  }
+
+  .controls {
+    grid-column: span 2;
+    justify-content: flex-end;
+    order: 0;
+    gap: 40px;
+    progress {
+      order: -1;
+    }
+  }
+}
