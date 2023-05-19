@@ -26,8 +26,7 @@ const miniCardsDataList: TCardsArray = [
   }
 ].map(obj => Object.assign(obj, {date: new Date('2020.11.10')}));
 
-export const newCardsDataList = [...miniCardsDataList, ...miniCardsDataList, ...miniCardsDataList, ...miniCardsDataList, ...miniCardsDataList, ...miniCardsDataList];
-//export const newCardsDataList = [miniCardsDataList[0]];
+const newCardsDataList = [...miniCardsDataList, ...miniCardsDataList, ...miniCardsDataList, ...miniCardsDataList, ...miniCardsDataList, ...miniCardsDataList];
 export const cardsDataList = newCardsDataList.map((obj, index) => {
   return {
     id: index + 1,
