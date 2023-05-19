@@ -27,6 +27,7 @@ $largeCardGap: 40px;
   width: $slideWidth;
   flex-shrink: 0;
   border: 1px solid $mainColorLight;
+  transition: border-color .3s ease;
   &[aria-selected] {
     border-color: $mainColor;
   }

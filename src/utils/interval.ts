@@ -13,9 +13,8 @@ export function interval(cb: () => void, ms: number){
     }
   };
   (function run(){
-    // cb();
+    cb();
     a.timer = setTimeout(run, ms);
-    // if (timeLeft <= 0) a.clear();
   })();
   
   return a;

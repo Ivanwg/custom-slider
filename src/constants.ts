@@ -44,4 +44,4 @@ export const media3CardsWidth = 840;
 export const media4CardsWidth = 1200;
 
 export const cardWidth = 260;
-export const slidesTime = 3000;
+export const slidesTime = 4000;
