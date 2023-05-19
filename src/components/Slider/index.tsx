@@ -156,7 +156,7 @@ const Slider = () => {
           {
             cardsDataList.map(obj => 
             // eslint-disable-next-line jsx-a11y/role-supports-aria-props
-            <li key={obj.id} className={styles.item} aria-selected={true}>
+            <li key={obj.id} className={styles.item}>
               <Card {...obj} />
             </li>)
           }
